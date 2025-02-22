@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 const ImportWallet: FC = () => {
   return (
-    <Page>
+    <Page header back>
       <h1>Import Wallet Component</h1>
     </Page>
   );

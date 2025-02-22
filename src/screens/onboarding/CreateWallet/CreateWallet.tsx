@@ -1,9 +1,9 @@
+import Page from 'components/Page';
 import { FC } from 'react';
-import Page from '../../../components/Page/Page';
 
 const CreateWallet: FC = () => {
   return (
-    <Page>
+    <Page header back>
       <h1>Create Wallet Component</h1>
     </Page>
   );

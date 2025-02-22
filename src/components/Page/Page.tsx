@@ -1,13 +1,12 @@
-import { FC, ReactNode } from 'react';
 import { PageContainer } from './Page.styles';
+import { Header } from '../Header/Header';
+import { TPageProps } from './Page.types';
 
-interface PageProps {
-  children: ReactNode;
-}
 
-const Page: FC<PageProps> = ({ children }) => {
+export const Page = ({ children, header, title, back }: TPageProps) => {
   return (
-    <PageContainer className="page">
+    <PageContainer>
+      {header && <Header title={title} back={back} />}
       {children}
     </PageContainer>
   );
