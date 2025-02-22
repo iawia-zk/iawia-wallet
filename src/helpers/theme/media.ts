@@ -1,4 +1,4 @@
-import BREAK_POINTS from "../../theme/media";
+import BREAK_POINTS from '../../theme/media';
 
 function customMediaQuery(breakPointSize: keyof typeof BREAK_POINTS): string {
   return `@media (min-width: ${BREAK_POINTS[breakPointSize]})`;

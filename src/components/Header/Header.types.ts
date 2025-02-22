@@ -1,4 +1,4 @@
 export type THeaderProps = {
-    title?: string;
-    back?: boolean;
-  }
+  title?: string;
+  back?: boolean;
+};

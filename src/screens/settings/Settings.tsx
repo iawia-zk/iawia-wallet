@@ -10,4 +10,4 @@ const Settings: FC = () => {
   );
 };
 
-export default Settings; 
+export default Settings;

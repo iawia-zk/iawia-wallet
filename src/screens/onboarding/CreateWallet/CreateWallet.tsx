@@ -9,4 +9,4 @@ const CreateWallet: FC = () => {
   );
 };
 
-export default CreateWallet; 
+export default CreateWallet;

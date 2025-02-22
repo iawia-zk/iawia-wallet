@@ -69,8 +69,9 @@ function Button({
           color={buttonStyle.text}
           variant={buttonSize.textVariant}
           numberOfLines={1}
-          {...labelProps}
-        >{children}</Text>
+          {...labelProps}>
+          {children}
+        </Text>
         {RightIcon && (
           <Box>
             <RightIcon

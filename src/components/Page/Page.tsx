@@ -2,7 +2,6 @@ import { PageContainer } from './Page.styles';
 import { Header } from '../Header/Header';
 import { TPageProps } from './Page.types';
 
-
 export const Page = ({ children, header, title, back }: TPageProps) => {
   return (
     <PageContainer>
@@ -12,4 +11,4 @@ export const Page = ({ children, header, title, back }: TPageProps) => {
   );
 };
 
-export default Page; 
+export default Page;

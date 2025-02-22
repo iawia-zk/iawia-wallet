@@ -1,6 +1,5 @@
 import { css } from 'styled-components';
 
-
 import { TThemePrimitives } from './theme.types';
 import { getColor } from '../helpers/theme';
 

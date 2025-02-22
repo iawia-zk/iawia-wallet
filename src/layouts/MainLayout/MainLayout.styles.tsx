@@ -27,4 +27,4 @@ export const Navbar = styled.nav`
 export const MainContent = styled.main`
   flex: 1;
   padding: 1rem;
-`; 
+`;

@@ -1,7 +1,6 @@
 import { styleFn } from 'styled-system';
 import { TBorderRadius, TSpacing, TTheme, TThemePrimitives } from 'theme/theme.types';
 
-
 function getColor(name: keyof TThemePrimitives): styleFn {
   return ({ theme }: { theme: TTheme }) => theme.colors[name];
 }

@@ -1,1 +1,1 @@
-export { default } from './Onboard'; 
+export { default } from './Onboard';

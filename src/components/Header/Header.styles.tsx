@@ -1,5 +1,5 @@
-import Box from "components/core/Box";
-import styled from "styled-components";
+import Box from 'components/core/Box';
+import styled from 'styled-components';
 
 export const HeaderContainer = styled(Box)({
   alignItems: 'center',
@@ -12,4 +12,4 @@ export const HeaderContainer = styled(Box)({
 export const Logo = styled('img')({
   height: '32px',
   width: 'auto',
-}); 
+});

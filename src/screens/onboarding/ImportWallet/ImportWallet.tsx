@@ -9,4 +9,4 @@ const ImportWallet: FC = () => {
   );
 };
 
-export default ImportWallet; 
+export default ImportWallet;

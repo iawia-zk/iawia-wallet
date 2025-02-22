@@ -1,9 +1,8 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export type TPageProps = {
-    children: ReactNode;
-    title?: string;
-    header?: boolean;
-    back?: boolean;
-  }
-  
+  children: ReactNode;
+  title?: string;
+  header?: boolean;
+  back?: boolean;
+};

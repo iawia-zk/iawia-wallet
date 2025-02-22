@@ -5,7 +5,8 @@
   box-sizing: border-box;
 }
 
-body, #root {
+body,
+#root {
   width: 100%;
   margin: 0;
   padding: 0;
@@ -19,7 +20,6 @@ body, #root {
   padding: 0;
   text-align: center;
 }
-
 
 .card {
   padding: 2em;

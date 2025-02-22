@@ -1,6 +1,5 @@
 import spinner from 'assets/lotties/spinner.json';
 
-
 const LOTTIES = {
   spinner,
 };
