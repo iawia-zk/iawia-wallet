@@ -4,31 +4,25 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:import/typescript",
     "prettier",
-    "plugin:@tanstack/eslint-plugin-query/recommended"
+    "plugin:@tanstack/eslint-plugin-query/recommended",
   ],
-  "plugins": [
-    "react",
-    "jsx-a11y",
-    "import",
-    "@typescript-eslint",
-    "prettier"
-  ],
+  "plugins": ["react", "jsx-a11y", "import", "@typescript-eslint", "prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true
-    }
+      "jsx": true,
+    },
   },
   "env": {
     "browser": true,
-    "jest": true
+    "jest": true,
   },
   "settings": {
     "react": {
-      "version": "detect"
-    }
+      "version": "detect",
+    },
   },
   "rules": {
     "implicit-arrow-linebreak": "off",
@@ -52,21 +46,21 @@
         "exports": "always-multiline",
         "functions": "never",
         "imports": "always-multiline",
-        "objects": "always-multiline"
-      }
+        "objects": "always-multiline",
+      },
     ],
     "no-use-before-define": "off",
     "no-param-reassign": [
       "error",
       {
-        "props": false
-      }
+        "props": false,
+      },
     ],
     "no-unused-expressions": [
       "error",
       {
-        "allowShortCircuit": true
-      }
+        "allowShortCircuit": true,
+      },
     ],
     "no-shadow": "off",
     "import/no-unresolved": "off",
@@ -79,8 +73,8 @@
         "js": "never",
         "jsx": "never",
         "ts": "never",
-        "tsx": "never"
-      }
+        "tsx": "never",
+      },
     ],
     "react/jsx-no-bind": "off",
     "react/jsx-props-no-spreading": "off",
@@ -88,13 +82,8 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
-      }
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+      },
     ],
     "react/prop-types": "off",
     "react/no-array-index-key": "off",
@@ -103,8 +92,8 @@
       "error",
       {
         "declaration": false,
-        "assignment": false
-      }
+        "assignment": false,
+      },
     ],
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
@@ -119,35 +108,32 @@
         "trailingComma": "es5",
         "singleQuote": true,
         "printWidth": 100,
-        "endOfLine": "auto"
-      }
-    ]
+        "endOfLine": "auto",
+      },
+    ],
+    "react/react-in-jsx-scope": "off",
   },
   "overrides": [
     {
-      "files": [
-        "**/*.test.tsx"
-      ],
+      "files": ["**/*.test.tsx"],
       "env": {
-        "jest": true
+        "jest": true,
       },
       "rules": {
-        "no-undef": "off"
-      }
+        "no-undef": "off",
+      },
     },
     {
-      "files": [
-        "**/*.json"
-      ],
+      "files": ["**/*.json"],
       "env": {
-        "jest": true
+        "jest": true,
       },
       "rules": {
         "no-unused-expressions": "off",
         "comma-dangle": "off",
         "react/jsx-uses-react": "off",
-        "react/react-in-jsx-scope": "off"
-      }
-    }
-  ]
+        "react/react-in-jsx-scope": "off",
+      },
+    },
+  ],
 }

@@ -5,6 +5,7 @@ import Page from 'components/Page';
 import Text from 'components/core/Text';
 import Button from 'components/core/Button';
 import Box from 'components/core/Box';
+import { IMPORT_WALLET_MESSAGE } from 'constants/chromeMessages';
 
 const Onboard: FC = () => {
   const navigate = useNavigate();
@@ -14,7 +15,8 @@ const Onboard: FC = () => {
   };
 
   const handleImportWallet = () => {
-    navigate('/import-wallet');
+    // navigate('/import-wallet');
+    chrome.runtime.sendMessage({ action: IMPORT_WALLET_MESSAGE });
   };
 
   return (

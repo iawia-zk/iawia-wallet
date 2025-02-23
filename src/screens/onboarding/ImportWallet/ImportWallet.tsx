@@ -1,26 +1,24 @@
 import BottomInsetBox from 'components/BottomInsetBox';
 import Page from 'components/Page';
-import TextInput from 'components/TextInput';
 import Box from 'components/core/Box';
 import Button from 'components/core/Button';
 import { Upload04Icon, XCloseIcon } from 'components/core/Icon';
 import IconButton from 'components/core/IconButton';
 import Text from 'components/core/Text';
 import useForm from 'hooks/useForm';
-import { FC, useRef, useState } from 'react';
-import { FORM_VALIDATION_SCHEMA } from './ImportWallet.constants';
-import { TImportWalletFormData } from './ImportWallet.types';
+import { FC, useState, useRef } from 'react';
 import BaseForm from 'components/BaseForm';
 import FieldTextInput from 'components/fields/FieldTextInput';
+import { FORM_VALIDATION_SCHEMA } from './ImportWallet.constants';
+import { TImportWalletFormData } from './ImportWallet.types';
 
 const ImportWallet: FC = () => {
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File>();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
     control,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm<TImportWalletFormData>({
     schema: FORM_VALIDATION_SCHEMA,
@@ -34,20 +32,15 @@ const ImportWallet: FC = () => {
     console.log(data);
   }
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      if (file.name.endsWith('.iawia')) {
-        setFile(file);
-      } else {
-        // TODO: Show proper error message to user
-        console.error('Invalid file type. Please upload a .iawia file');
-      }
-    }
+  const handleFileUpload = () => {
+    fileInputRef.current?.click();
   };
 
-  const handleButtonClick = () => {
-    fileInputRef.current?.click();
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files?.[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+    }
   };
 
   const handleRemoveFile = () => {
@@ -58,24 +51,24 @@ const ImportWallet: FC = () => {
   };
 
   return (
-    <Page header back>
+    <Page header>
       <BaseForm isSubmitButtonVisible={false}>
-        <Box gap={'m'} flexDirection={'column'}>
+        <Box gap="m" flexDirection="column">
           <Text variant="titleSection">Import Wallet</Text>
           <Text variant="textBody">
             1- Upload your wallet backup file (.iawia) to restore your wallet
           </Text>
-          <input
-            type="file"
-            accept=".iawia"
-            ref={fileInputRef}
-            onChange={handleFileUpload}
-            style={{ display: 'none' }}
-          />
-          <Box flexDirection={'row'} gap={'s'} alignItems={'center'}>
+          <Box flexDirection="row" gap="s" alignItems="center">
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              accept=".iawia"
+              style={{ display: 'none' }}
+            />
             <Button
               leftIcon={file ? undefined : Upload04Icon}
-              onPress={handleButtonClick}
+              onPress={handleFileUpload}
               block={!!file}>
               {file?.name ?? 'Upload Wallet File'}
             </Button>
@@ -96,7 +89,7 @@ const ImportWallet: FC = () => {
             label="Decryption Password"
             placeholder="Enter decryption password"
           />
-          <BottomInsetBox>
+          <BottomInsetBox sticky>
             <Button disabled={!file} onPress={handleSubmit(onSubmit)}>
               Import Wallet
             </Button>

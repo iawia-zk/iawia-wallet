@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && cd dist && tsc",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "preview": "vite preview",
@@ -16,11 +16,12 @@
     "watch": "vite build --watch"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@types/lodash": "^4.17.15",
     "@types/styled-system": "^5.1.23",
-    "@hookform/resolvers": "^3.9.0",
     "loadsh": "^0.0.4",
     "lodash": "^4.17.21",
+    "path": "^0.12.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
@@ -34,6 +35,8 @@
   "devDependencies": {
     "@eslint/js": "^9.19.0",
     "@tanstack/eslint-plugin-query": "^5.66.1",
+    "@types/chrome": "^0.0.306",
+    "@types/node": "^22.13.5",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@types/react-lottie": "^1.2.10",
