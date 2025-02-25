@@ -9,6 +9,7 @@ import Settings from './screens/settings/Settings';
 import Onboard from './screens/onboarding/Onboard/Onboard';
 import ImportWallet from './screens/onboarding/ImportWallet/ImportWallet';
 import CreateWallet from './screens/onboarding/CreateWallet/CreateWallet';
+import './i18n';
 
 declare global {
   interface Window {

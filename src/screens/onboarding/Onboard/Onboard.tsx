@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import Page from 'components/Page';
 import Text from 'components/core/Text';
@@ -9,6 +10,7 @@ import { IMPORT_WALLET_MESSAGE } from 'constants/chromeMessages';
 
 const Onboard: FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleCreateWallet = () => {
     navigate('/create-wallet');
@@ -24,18 +26,18 @@ const Onboard: FC = () => {
       <Box flex={1} alignItems="center" justifyContent="center" padding="xl" gap="l">
         <Box>
           <Text variant="titleSection" color="textPrimary">
-            Welcome to IAWIA
+            {t('onboarding.title')}
           </Text>
           <Text variant="textBody" color="textSecondary" textAlign="center">
-            Choose how you'd like to get started
+            {t('onboarding.instructions')}
           </Text>
         </Box>
         <Box width="100%" gap="m">
           <Button variant="primary" onPress={handleImportWallet}>
-            I already have a wallet
+            {t('onboarding.import.title')}
           </Button>
           <Button variant="secondary" onPress={handleCreateWallet}>
-            I need a new wallet
+            {t('onboarding.create.title')}
           </Button>
         </Box>
       </Box>

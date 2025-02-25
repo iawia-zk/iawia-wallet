@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 export type TPageProps = {
   children: ReactNode;
-  title?: string;
+  titleId?: string;
   header?: boolean;
   back?: boolean;
 };

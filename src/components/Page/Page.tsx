@@ -3,9 +3,9 @@ import { PageContainer } from './Page.styles';
 import { Header } from '../Header/Header';
 import { TPageProps } from './Page.types';
 
-export const Page = ({ children, header, title, back }: TPageProps) => (
+export const Page = ({ children, header, titleId, back }: TPageProps) => (
   <PageContainer>
-    {header && <Header title={title} back={back} />}
+    {header && <Header titleId={titleId} back={back} />}
     <Box padding="s" id="wrapper">
       {children}
     </Box>

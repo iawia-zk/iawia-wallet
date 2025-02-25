@@ -1,0 +1,29 @@
+{
+  "onboarding": {
+    "title": "Welcome to Our App",
+    "instructions": "Please follow these steps to get started",
+    "import": {
+      "title": "Import Wallet",
+      "instructions": "Please upload your wallet file obtained from the iawia mobile app",
+      "uploadButton": "Upload Wallet File",
+      "passwordInstructions": "2- Enter the file decryption password",
+      "passwordLabel": "Decryption Password",
+      "passwordPlaceholder": "Enter decryption password",
+      "submitButton": "Import Wallet"
+    },
+    "create": {
+      "title": "Download Our Mobile App",
+      "description": "For enhanced security and unique features, wallet creation is only available through our mobile app. Please scan the QR code below or visit our mobile app store pages to download the app.",
+      "visitLink": "or click here to visit"
+    }
+  },
+  "common": {
+    "back": "Back",
+    "next": "Next",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+  "header": {
+    "defaultTitle": "iawia"
+  }
+}

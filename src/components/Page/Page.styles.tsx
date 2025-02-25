@@ -12,6 +12,7 @@ export const PageContainer = styled(Box)`
 
   #wrapper {
     max-width: 600px;
+    min-width: 400px;
     height: calc(100vh - ${HEADER_HEIGHT});
   }
 `;

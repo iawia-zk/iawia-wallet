@@ -9,12 +9,14 @@ import useForm from 'hooks/useForm';
 import { FC, useState, useRef } from 'react';
 import BaseForm from 'components/BaseForm';
 import FieldTextInput from 'components/fields/FieldTextInput';
+import { useTranslation } from 'react-i18next';
 import { FORM_VALIDATION_SCHEMA } from './ImportWallet.constants';
 import { TImportWalletFormData } from './ImportWallet.types';
 
 const ImportWallet: FC = () => {
   const [file, setFile] = useState<File>();
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { t } = useTranslation();
 
   const {
     control,
@@ -54,10 +56,8 @@ const ImportWallet: FC = () => {
     <Page header>
       <BaseForm isSubmitButtonVisible={false}>
         <Box gap="m" flexDirection="column">
-          <Text variant="titleSection">Import Wallet</Text>
-          <Text variant="textBody">
-            1- Upload your wallet backup file (.iawia) to restore your wallet
-          </Text>
+          <Text variant="titleSection">{t('onboarding.import.title')}</Text>
+          <Text variant="textBody">{t('onboarding.import.instructions')}</Text>
           <Box flexDirection="row" gap="s" alignItems="center">
             <input
               type="file"
@@ -70,7 +70,7 @@ const ImportWallet: FC = () => {
               leftIcon={file ? undefined : Upload04Icon}
               onPress={handleFileUpload}
               block={!!file}>
-              {file?.name ?? 'Upload Wallet File'}
+              {file?.name ?? t('onboarding.import.uploadButton')}
             </Button>
             {file && (
               <IconButton
@@ -81,17 +81,17 @@ const ImportWallet: FC = () => {
               />
             )}
           </Box>
-          <Text variant="textBody">2- Enter the file decryption password</Text>
+          <Text variant="textBody">{t('onboarding.import.passwordInstructions')}</Text>
           <FieldTextInput
             control={control}
             errors={errors}
             name="decrypter"
-            label="Decryption Password"
-            placeholder="Enter decryption password"
+            label={t('onboarding.import.passwordLabel')}
+            placeholder={t('onboarding.import.passwordPlaceholder')}
           />
           <BottomInsetBox sticky>
             <Button disabled={!file} onPress={handleSubmit(onSubmit)}>
-              Import Wallet
+              {t('onboarding.import.submitButton')}
             </Button>
           </BottomInsetBox>
         </Box>
