@@ -4,6 +4,7 @@ import { HEADER_HEIGHT } from './Header.constants';
 
 export const HeaderContainer = styled(Box)({
   alignItems: 'center',
+  width: '100%',
   height: HEADER_HEIGHT,
   padding: '16px 24px',
   gap: '12px',

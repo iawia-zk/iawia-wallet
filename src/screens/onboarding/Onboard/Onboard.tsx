@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -7,10 +7,21 @@ import Text from 'components/core/Text';
 import Button from 'components/core/Button';
 import Box from 'components/core/Box';
 import { IMPORT_WALLET_MESSAGE } from 'constants/chromeMessages';
+import { chromeStorage } from 'helpers/chromeStorage';
 
 const Onboard: FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const checkWallet = async () => {
+      const walletData = await chromeStorage.get('wallet');
+      if (walletData) {
+        navigate('/home');
+      }
+    };
+    checkWallet();
+  }, []);
 
   const handleCreateWallet = () => {
     navigate('/create-wallet');

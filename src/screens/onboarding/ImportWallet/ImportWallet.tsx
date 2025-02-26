@@ -14,6 +14,7 @@ import { readFileContent } from 'helpers/fileUtils';
 import { decrypt } from 'helpers/encryption';
 import alertModal from 'helpers/alertModal';
 import { TI18nId } from 'types/common';
+import { chromeStorage } from 'helpers/chromeStorage/chromeStorage';
 import { FORM_VALIDATION_SCHEMA } from './ImportWallet.constants';
 import { TImportWalletFormData } from './ImportWallet.types';
 
@@ -41,7 +42,10 @@ const ImportWallet: FC = () => {
 
         // Decryption
         const decrypted = await decrypt(fileContent, data.decrypter);
-        console.log(JSON.parse(decrypted));
+        const walletData = JSON.parse(decrypted);
+
+        // Save to chrome storage
+        await chromeStorage.set('wallet', walletData);
       } catch (error) {
         alertModal.error({
           titleId: 'errors.decryption',
