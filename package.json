@@ -19,6 +19,7 @@
     "@hookform/resolvers": "^3.9.0",
     "@types/lodash": "^4.17.15",
     "@types/styled-system": "^5.1.23",
+    "framer-motion": "^12.4.7",
     "i18next": "^24.2.2",
     "loadsh": "^0.0.4",
     "lodash": "^4.17.21",

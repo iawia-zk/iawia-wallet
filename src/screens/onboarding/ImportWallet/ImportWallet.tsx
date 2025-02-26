@@ -10,6 +10,10 @@ import { FC, useState, useRef } from 'react';
 import BaseForm from 'components/BaseForm';
 import FieldTextInput from 'components/fields/FieldTextInput';
 import { useTranslation } from 'react-i18next';
+import { readFileContent } from 'helpers/fileUtils';
+import { decrypt } from 'helpers/encryption';
+import alertModal from 'helpers/alertModal';
+import { TI18nId } from 'types/common';
 import { FORM_VALIDATION_SCHEMA } from './ImportWallet.constants';
 import { TImportWalletFormData } from './ImportWallet.types';
 
@@ -30,8 +34,20 @@ const ImportWallet: FC = () => {
     },
   });
 
-  function onSubmit(data: TImportWalletFormData) {
-    console.log(data);
+  async function onSubmit(data: TImportWalletFormData) {
+    if (file && data.decrypter) {
+      try {
+        const fileContent = await readFileContent(file);
+
+        // Decryption
+        const decrypted = await decrypt(fileContent, data.decrypter);
+        console.log(JSON.parse(decrypted));
+      } catch (error) {
+        alertModal.error({
+          titleId: 'errors.decryption',
+        });
+      }
+    }
   }
 
   const handleFileUpload = () => {
@@ -67,11 +83,11 @@ const ImportWallet: FC = () => {
               style={{ display: 'none' }}
             />
             <Button
+              labelId={(file?.name ?? 'onboarding.import.uploadButton') as TI18nId}
               leftIcon={file ? undefined : Upload04Icon}
               onPress={handleFileUpload}
-              block={!!file}>
-              {file?.name ?? t('onboarding.import.uploadButton')}
-            </Button>
+              block={!!file}
+            />
             {file && (
               <IconButton
                 icon={XCloseIcon}
@@ -90,9 +106,11 @@ const ImportWallet: FC = () => {
             placeholder={t('onboarding.import.passwordPlaceholder')}
           />
           <BottomInsetBox sticky>
-            <Button disabled={!file} onPress={handleSubmit(onSubmit)}>
-              {t('onboarding.import.submitButton')}
-            </Button>
+            <Button
+              disabled={!file}
+              onPress={handleSubmit(onSubmit)}
+              labelId="onboarding.import.submitButton"
+            />
           </BottomInsetBox>
         </Box>
       </BaseForm>

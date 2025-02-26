@@ -10,8 +10,9 @@ import { BUTTONS_VARIANT_STATE_MAP } from './Button.constants';
 function Button({
   type = 'button',
   className,
+  labelId,
   labelProps,
-  children,
+  labelValues,
   variant = 'primary',
   size = 'medium',
   loading = false,
@@ -66,12 +67,13 @@ function Button({
         )}
         <Text
           as="span"
+          textId={labelId}
+          values={labelValues}
           color={buttonStyle.text}
           variant={buttonSize.textVariant}
           numberOfLines={1}
-          {...labelProps}>
-          {children}
-        </Text>
+          {...labelProps}
+        />
         {RightIcon && (
           <Box>
             <RightIcon

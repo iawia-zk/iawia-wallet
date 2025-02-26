@@ -1,13 +1,14 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 
+import { TI18nId } from 'types/common';
 import { TTextVariantKeys, TThemePrimitives, TSpacing } from 'theme/theme.types';
 import { TTextProps } from 'components/core/Text/Text.types';
-import { TIconProps } from 'components/core/Icon/Icon.types';
+import { TIconProps } from '../Icon/Icon.types';
 
 export type TButtonProps = {
   className?: string;
+  labelId: TI18nId;
   labelValues?: TTextProps['values'];
-  children?: ReactNode;
   labelProps?: TTextProps;
   rightIcon?: FC<TIconProps>;
   leftIcon?: FC<TIconProps>;

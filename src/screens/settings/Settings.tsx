@@ -1,13 +1,6 @@
 import { FC } from 'react';
-import Button from 'components/core/Button';
 import Page from '../../components/Page';
 
-const Settings: FC = () => {
-  return (
-    <Page>
-      <Button>Setting</Button>
-    </Page>
-  );
-};
+const Settings: FC = () => <Page>Settings</Page>;
 
 export default Settings;

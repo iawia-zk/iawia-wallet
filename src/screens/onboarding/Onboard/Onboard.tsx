@@ -33,12 +33,16 @@ const Onboard: FC = () => {
           </Text>
         </Box>
         <Box width="100%" gap="m">
-          <Button variant="primary" onPress={handleImportWallet}>
-            {t('onboarding.import.title')}
-          </Button>
-          <Button variant="secondary" onPress={handleCreateWallet}>
-            {t('onboarding.create.title')}
-          </Button>
+          <Button
+            variant="primary"
+            onPress={handleImportWallet}
+            labelId="onboarding.import.title"
+          />
+          <Button
+            variant="secondary"
+            onPress={handleCreateWallet}
+            labelId="onboarding.create.title"
+          />
         </Box>
       </Box>
     </Page>

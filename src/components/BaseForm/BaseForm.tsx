@@ -4,6 +4,7 @@ import Box from 'components/core/Box';
 import Button from 'components/core/Button';
 import BottomInsetBox from 'components/BottomInsetBox';
 
+import { TI18nId } from 'types/common';
 import { TBaseFormProps } from './BaseForm.types';
 
 function BaseForm({
@@ -39,9 +40,12 @@ function BaseForm({
         {isSubmitButtonVisible && (
           <BottomInsetBox>
             {buttonStickyContent}
-            <Button type="submit" {...submitButtonProps} onPress={onSubmit}>
-              {submitButtonLabel}
-            </Button>
+            <Button
+              type="submit"
+              {...submitButtonProps}
+              onPress={onSubmit}
+              labelId={submitButtonLabel as TI18nId}
+            />
             {buttonBottomContent}
           </BottomInsetBox>
         )}
