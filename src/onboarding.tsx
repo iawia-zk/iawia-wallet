@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import ImportWallet from 'screens/onboarding/ImportWallet';
 import AlertModal from 'components/AlertModal';
 import { alertModalRef } from 'components/AlertModal/AlertModal';
-import './i18n';
+import './configs/i18n';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

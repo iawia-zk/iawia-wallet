@@ -4,3 +4,4 @@ export { default as XCloseIcon } from './views/XCloseIcon';
 export { default as AlertOctagonIcon } from './views/AlertOctagonIcon';
 export { default as AlertCircleIcon } from './views/AlertCircleIcon';
 export { default as CheckCircleIcon } from './views/CheckCircleIcon';
+export { default as CheckVerified01Icon } from './views/CheckVerified01Icon';

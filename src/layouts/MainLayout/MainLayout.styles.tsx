@@ -3,10 +3,15 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
 `;
 
 export const Navbar = styled.nav`
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   gap: 1rem;
   padding: 1rem;
   background-color: #f8f9fa;
@@ -27,4 +32,6 @@ export const Navbar = styled.nav`
 export const MainContent = styled.main`
   flex: 1;
   padding: 1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;

@@ -17,7 +17,7 @@ const Onboard: FC = () => {
     const checkWallet = async () => {
       const walletData = await chromeStorage.get('wallet');
       if (walletData) {
-        navigate('/home');
+        navigate('/data');
       }
     };
     checkWallet();
