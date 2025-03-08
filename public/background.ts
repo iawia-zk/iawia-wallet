@@ -12,8 +12,13 @@ chrome.runtime.onMessage.addListener(async (msg) => {
   }
 
   if (msg.action === 'OPEN_FULLSCREEN_PAGE') {
+    const url = new URL(chrome.runtime.getURL('verification.html'));
+    if (msg.data) {
+      url.searchParams.append('data', JSON.stringify(msg.data));
+    }
+
     chrome.tabs.create({
-      url: chrome.runtime.getURL('verification.html'),
+      url: url.toString(),
       active: true,
       windowId: currentWindow.id,
     });

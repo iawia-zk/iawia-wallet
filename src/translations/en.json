@@ -18,5 +18,6 @@
   "header.defaultTitle": "iawia",
   "errors.decryption": "The decryption password is incorrect",
   "button.confirm": "Confirm",
-  "button.cancel": "Cancel"
+  "button.cancel": "Cancel",
+  "button.verify": "Verify"
 }
