@@ -6,7 +6,7 @@
   "action": {
     "default_popup": "index.html"
   },
-  "permissions": ["offscreen", "scripting", "storage"],
+  "permissions": ["offscreen", "scripting", "storage", "activeTab"],
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
@@ -15,13 +15,19 @@
   "background": {
     "service_worker": "dist/background.js"
   },
-  "host_permissions": ["http://localhost:3000/*"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["dist/contentScript.js"]
+    }
+  ],
+  "host_permissions": ["<all_urls>"],
   "content_security_policy": {
     "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
   },
   "web_accessible_resources": [
     {
-      "resources": ["filepicker.html"],
+      "resources": ["filepicker.html", "fullscreen.html"],
       "matches": ["<all_urls>"]
     }
   ]
