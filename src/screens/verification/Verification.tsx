@@ -12,7 +12,11 @@ interface CompanyData {
 }
 
 function Verification() {
-  const [companyData, setCompanyData] = useState<CompanyData | null>(null);
+  const [companyData, setCompanyData] = useState<CompanyData | null>({
+    companyName: '',
+    companyLogo: '',
+    zkTypes: [],
+  });
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
