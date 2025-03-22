@@ -54,7 +54,8 @@ export const ThemeProvider = ({ children }: TChildrenOnly): ReactElement => {
   }, []);
 
   async function getSelectedTheme() {
-    const themeValue = getThemeValueByThemeString(storage.readStorage(STORAGE_KEYS.THEME));
+    const theme = await storage.readStorage(STORAGE_KEYS.THEME);
+    const themeValue = getThemeValueByThemeString(theme);
     setState({ theme: themeValue });
   }
 

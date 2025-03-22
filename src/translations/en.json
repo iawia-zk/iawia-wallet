@@ -19,5 +19,17 @@
   "errors.decryption": "The decryption password is incorrect",
   "button.confirm": "Confirm",
   "button.cancel": "Cancel",
-  "button.verify": "Verify"
+  "button.verify": "Verify",
+  "onboarding.import.walletKeyLabel": "Wallet Key",
+  "onboarding.import.walletKeyPlaceholder": "Enter wallet key",
+  "label.copy": "Copy",
+  "label.copied": "Copied",
+  "label.phrase": "Phrase",
+  "label.walletAddress": "Wallet Address",
+  "label.balance": "Balance",
+  "button.generateWallet": "Generate Wallet",
+  "button.importWallet": "Import Wallet",
+  "button.sendInitialTransaction": "Send Initial Transaction",
+  "button.getTransactions": "Get Transactions",
+  "label.txData": "Transaction Data"
 }

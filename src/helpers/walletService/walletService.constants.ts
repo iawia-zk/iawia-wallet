@@ -1,0 +1,4 @@
+export const BURN_ADDRESS = '0x0000000000000000000000000000000000000000';
+
+export const MAIN_CHAIN_KEY = import.meta.env.VITE_ETH_MAINNET_KEY;
+export const TEST_CHAIN_KEY = import.meta.env.VITE_ETH_SEPOLIA_KEY;

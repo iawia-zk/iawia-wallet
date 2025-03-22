@@ -5,3 +5,5 @@ export { default as AlertOctagonIcon } from './views/AlertOctagonIcon';
 export { default as AlertCircleIcon } from './views/AlertCircleIcon';
 export { default as CheckCircleIcon } from './views/CheckCircleIcon';
 export { default as CheckVerified01Icon } from './views/CheckVerified01Icon';
+export { default as FileCheck03Icon } from './views/FileCheck03Icon';
+export { default as Copy07Icon } from './views/Copy07Icon';

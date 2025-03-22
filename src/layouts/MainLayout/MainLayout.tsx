@@ -5,6 +5,7 @@ import { Container, Navbar, MainContent } from './MainLayout.styles';
 const MainLayout: FC = () => (
   <Container className="extension-container">
     <Navbar className="navbar">
+      <Link to="/wallet">Wallet</Link>
       <Link to="/data">Data</Link>
       <Link to="/history">History</Link>
     </Navbar>

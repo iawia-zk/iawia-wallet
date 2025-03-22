@@ -1,4 +1,5 @@
 export type TImportWalletFormData = {
   decrypter?: string;
-  file?: File;
+  // file?: File;
+  walletKey?: string;
 };

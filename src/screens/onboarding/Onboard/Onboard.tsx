@@ -7,21 +7,25 @@ import Text from 'components/core/Text';
 import Button from 'components/core/Button';
 import Box from 'components/core/Box';
 import { IMPORT_WALLET_MESSAGE } from 'constants/chromeMessages';
-import { chromeStorage } from 'helpers/chromeStorage';
+import { useWalletContext } from 'context/WalletProvider/WalletProvider';
 
 const Onboard: FC = () => {
+  const { walletState } = useWalletContext();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   useEffect(() => {
     const checkWallet = async () => {
-      const walletData = await chromeStorage.get('wallet');
-      if (walletData) {
-        navigate('/data');
+      if (walletState.wallet?.address) {
+        navigate('/wallet');
       }
     };
-    checkWallet();
-  }, []);
+    const interval = setInterval(() => {
+      checkWallet();
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [walletState.wallet?.address]);
 
   const handleCreateWallet = () => {
     navigate('/create-wallet');
