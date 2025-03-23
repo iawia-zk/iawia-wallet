@@ -1,6 +1,7 @@
-import { DataType } from 'enums/DataType';
+import { ZKType } from 'enums/ZKType';
 
 export type TDataItem = {
-  dataType: DataType;
+  dataType: ZKType;
+  ipfsHash?: string;
   verified: boolean;
 };

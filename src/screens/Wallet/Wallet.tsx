@@ -4,7 +4,9 @@ import Button from 'components/core/Button';
 import Page from 'components/Page';
 import TextInput from 'components/TextInput';
 import { useWalletContext } from 'context/WalletProvider/WalletProvider';
+import { TWalletData } from 'context/WalletProvider/WalletProvider.types';
 import { walletService } from 'helpers/walletService';
+import { BURN_ADDRESS } from 'helpers/walletService/walletService.constants';
 import { getRawDataFromHex } from 'helpers/walletService/walletService.helper';
 
 import { useState } from 'react';
@@ -22,13 +24,14 @@ const Wallet = () => {
       return;
     }
 
-    const transaction = transactions[0];
-    console.log('transaction', transaction);
+    const transaction = transactions.filter((tx) => tx.to === BURN_ADDRESS)[0];
 
     const transactionDetails = await walletService.getTransactionDetails(transaction.hash);
-    const data = getRawDataFromHex(transactionDetails?.data ?? '');
-    setTxData(data);
+    const stringData = getRawDataFromHex(transactionDetails?.data ?? '');
+    const data: TWalletData = JSON.parse(stringData);
+    setTxData('Retrieved, navigate to zk');
     setTxDataLoading(false);
+    walletDispatch.setWalletData(data);
   }
 
   return (

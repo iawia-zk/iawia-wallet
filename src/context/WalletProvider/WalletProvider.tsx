@@ -1,7 +1,7 @@
 import { createContext, ReactElement, useContext, useEffect, useState } from 'react';
 import { TChildrenOnly } from 'types/common';
 import { walletService } from 'helpers/walletService';
-import { TWalletContext, TWalletState } from './WalletProvider.types';
+import { TWalletContext, TWalletData, TWalletState } from './WalletProvider.types';
 import { INITIAL_DISPATCH, INITIAL_STATE } from './WalletProvider.constants';
 
 const walletContext = createContext<TWalletContext>({
@@ -32,9 +32,13 @@ function WalletProvider({ children }: TChildrenOnly): ReactElement {
     setState((prevState) => ({ ...prevState, wallet }));
   }
 
+  function setWalletData(data: TWalletData) {
+    setState((prevState) => ({ ...prevState, walletData: data }));
+  }
+
   const value: TWalletContext = {
     walletState: state,
-    walletDispatch: { importWallet, sendInitialTransaction },
+    walletDispatch: { importWallet, sendInitialTransaction, setWalletData },
   };
 
   return <walletContext.Provider value={value}>{children}</walletContext.Provider>;

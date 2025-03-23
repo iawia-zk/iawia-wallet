@@ -6,7 +6,7 @@ import XCloseIcon from 'components/core/Icon/views/XCloseIcon';
 import spacing from 'theme/spacing';
 import { TDataItem } from '../Data.types';
 
-function DataItem({ dataType, verified }: TDataItem): ReactElement {
+function DataItem({ dataType, verified, ipfsHash }: TDataItem): ReactElement {
   return (
     <Box
       flexDirection="row"
@@ -17,7 +17,17 @@ function DataItem({ dataType, verified }: TDataItem): ReactElement {
       borderStyle="solid"
       borderColor="borderOutline"
       borderRadius={spacing.l}>
-      <Text>{dataType.replace(/_/g, ' ')}</Text>
+      <Box>
+        <Text>{dataType.replace(/_/g, ' ')}</Text>
+        {ipfsHash && (
+          <a
+            href={`https://gateway.pinata.cloud/ipfs/${ipfsHash}`}
+            target="_blank"
+            rel="noreferrer">
+            data
+          </a>
+        )}
+      </Box>
       <Box color={verified ? 'statusPositivePrimary' : 'statusErrorPrimary'}>
         {verified ? (
           <CheckVerified01Icon iconColor="textPrimary" />

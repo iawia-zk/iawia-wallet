@@ -9,4 +9,5 @@ export const INITIAL_STATE: TWalletState = {
 export const INITIAL_DISPATCH: TWalletDispatch = {
   importWallet: NOOP,
   sendInitialTransaction: NOOP,
+  setWalletData: NOOP,
 };
