@@ -8,7 +8,6 @@ export const Container = styled.div`
 
 export const Navbar = styled.nav`
   display: flex;
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -31,7 +30,7 @@ export const Navbar = styled.nav`
 
 export const MainContent = styled.main`
   flex: 1;
-  padding: 1rem;
+  padding-horizontal: 1rem;
   overflow-y: auto;
   overflow-x: hidden;
 `;

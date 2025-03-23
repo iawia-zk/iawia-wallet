@@ -33,7 +33,7 @@ const Wallet = () => {
 
   return (
     <Page>
-      <Box gap="m" mx="m" px="m" overflowY="scroll">
+      <Box gap="m" mx="m" px="m" overflowY="scroll" overflowX="hidden">
         <TextInput
           label="label.phrase"
           placeholder="label.phrase"

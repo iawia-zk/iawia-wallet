@@ -5,4 +5,5 @@ export type TPageProps = {
   titleId?: string;
   header?: boolean;
   back?: boolean;
+  isLoading?: boolean;
 };

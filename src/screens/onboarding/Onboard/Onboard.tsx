@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -8,23 +8,24 @@ import Button from 'components/core/Button';
 import Box from 'components/core/Box';
 import { IMPORT_WALLET_MESSAGE } from 'constants/chromeMessages';
 import { useWalletContext } from 'context/WalletProvider/WalletProvider';
+import storage, { STORAGE_KEYS } from 'helpers/storage';
 
 const Onboard: FC = () => {
   const { walletState } = useWalletContext();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation();
 
   useEffect(() => {
     const checkWallet = async () => {
-      if (walletState.wallet?.address) {
+      const walletPhrase = await storage.readStorage(STORAGE_KEYS.WALLET_PHRASE);
+      if (walletPhrase) {
         navigate('/wallet');
       }
+      setIsLoading(false);
     };
-    const interval = setInterval(() => {
-      checkWallet();
-    }, 1000);
 
-    return () => clearInterval(interval);
+    checkWallet();
   }, [walletState.wallet?.address]);
 
   const handleCreateWallet = () => {
@@ -37,7 +38,7 @@ const Onboard: FC = () => {
   };
 
   return (
-    <Page header>
+    <Page header isLoading={isLoading}>
       <Box flex={1} alignItems="center" justifyContent="center" padding="xl" gap="l">
         <Box>
           <Text variant="titleSection" color="textPrimary">
