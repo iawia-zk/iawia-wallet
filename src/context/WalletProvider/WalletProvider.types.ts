@@ -1,14 +1,5 @@
-import { ZKType } from 'enums/ZKType';
 import { HDNodeWallet } from 'ethers';
-
-export type TWalletData = {
-  snarks: TSnark[];
-};
-
-export type TSnark = {
-  type: ZKType;
-  ipfsHash: string;
-};
+import { TWalletData } from 'types/walletData';
 
 export type TWalletContext = {
   walletState: TWalletState;
@@ -25,4 +16,5 @@ export type TWalletDispatch = {
   importWallet: (phrase: string) => void;
   sendInitialTransaction: (data: string) => void;
   setWalletData: (data: TWalletData) => void;
+  getBalance: () => Promise<void>;
 };

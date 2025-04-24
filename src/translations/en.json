@@ -27,6 +27,7 @@
   "label.phrase": "Phrase",
   "label.walletAddress": "Wallet Address",
   "label.balance": "Balance",
+  "label.formattedBalance": "{{balance}} eth",
   "button.generateWallet": "Generate Wallet",
   "button.importWallet": "Import Wallet",
   "button.sendInitialTransaction": "Send Initial Transaction",

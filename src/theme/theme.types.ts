@@ -25,6 +25,8 @@ export type TThemePrimitives = {
   textInverted: string;
   textSecondary: string;
 
+  diamond: string;
+
   // Background Primitives
   backgroundPrimary: string;
   backgroundSecondary: string;
@@ -202,6 +204,8 @@ export type TPalette = {
   silver: string;
   transparent: string;
   trustPilotIcon: string;
+
+  diamond: string;
 };
 
 export type TTextVariantKeys =

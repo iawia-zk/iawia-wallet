@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && cd dist && tsc",
+    "build": "tsc && vite build",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "preview": "vite preview",
     "build:extension": "vite build --config vite.config.extension.js",
+    "dev:extension": "tsc --watch & vite build --config vite.config.extension.js --watch",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "format:check": "prettier --check .",
     "lint-staged": "prettier --write --ignore-unknown",

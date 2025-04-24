@@ -1,4 +1,4 @@
-import { NOOP } from 'constants/noop';
+import { ASYNC_NOOP, NOOP } from 'constants/noop';
 import { TWalletDispatch, TWalletState } from './WalletProvider.types';
 
 export const INITIAL_STATE: TWalletState = {
@@ -10,4 +10,5 @@ export const INITIAL_DISPATCH: TWalletDispatch = {
   importWallet: NOOP,
   sendInitialTransaction: NOOP,
   setWalletData: NOOP,
+  getBalance: ASYNC_NOOP,
 };

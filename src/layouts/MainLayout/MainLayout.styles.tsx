@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+  width: calc(100% - 1rem);
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
+  overflow: hidden;
+  background-color: red;
 `;
 
 export const Navbar = styled.nav`
@@ -30,7 +32,7 @@ export const Navbar = styled.nav`
 
 export const MainContent = styled.main`
   flex: 1;
-  padding-horizontal: 1rem;
   overflow-y: auto;
   overflow-x: hidden;
+  box-sizing: border-box;
 `;

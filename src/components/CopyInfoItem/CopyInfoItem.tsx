@@ -9,7 +9,14 @@ import { getCopyInfoItemStyle } from './CopyInfoItem.helpers';
 import { TCopyInfoItemProps } from './CopyInfoItem.types';
 import { StyledCopyInfoItemButton } from './CopyInfoItem.styles';
 
-function CopyInfoItem({ labelId, labelProps, value, onCopied, marginBottom }: TCopyInfoItemProps) {
+function CopyInfoItem({
+  labelId,
+  labelProps,
+  value,
+  valueProps,
+  onCopied,
+  marginBottom,
+}: TCopyInfoItemProps) {
   const { copied, copy } = useCopy();
   const copyInfoItemStyle = getCopyInfoItemStyle({ copied });
   const Icon = copied ? FileCheck03Icon : Copy07Icon;
@@ -31,7 +38,11 @@ function CopyInfoItem({ labelId, labelProps, value, onCopied, marginBottom }: TC
         <Box flexDirection="row" alignItems="center" minHeight={COPY_ITEM_MIN_HEIGHT}>
           <Box flex={1}>
             <Text textId={labelId} variant="textBodySub" color="textSecondary" {...labelProps} />
-            <Text variant="textBodySubBold" mt="xxs" color={copyInfoItemStyle.valueColor}>
+            <Text
+              variant="textBodySubBold"
+              mt="xxs"
+              color={copyInfoItemStyle.valueColor}
+              {...valueProps}>
               {value}
             </Text>
           </Box>

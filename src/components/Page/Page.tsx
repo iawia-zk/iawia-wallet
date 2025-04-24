@@ -7,7 +7,7 @@ import { TPageProps } from './Page.types';
 export const Page = ({ children, header, titleId, back, isLoading }: TPageProps) => (
   <PageContainer>
     {header && <Header titleId={titleId} back={back} />}
-    <Box padding="s" id="wrapper">
+    <Box id="wrapper">
       {isLoading ? (
         <Box marginTop="xl" alignItems="center" justifyContent="center">
           <ActivityIndicator />

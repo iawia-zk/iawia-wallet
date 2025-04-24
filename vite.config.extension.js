@@ -1,25 +1,35 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { resolve } from 'path';
+import { dirname, resolve } from 'path';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tsconfigPaths()],
+  base: './',
   build: {
     outDir: 'dist',
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-      },
+    watch: {
+      include: ['src/**', 'public/**'],
     },
-    // Ensure files are not hashed for extension compatibility
     rollupOptions: {
       output: {
-        entryFileNames: `assets/[name].js`,
-        chunkFileNames: `assets/[name].js`,
-        assetFileNames: `assets/[name].[ext]`
-      }
-    }
+        entryFileNames: (chunkInfo) => {
+          if (chunkInfo.name === 'background' || chunkInfo.name === 'contentScript') {
+            return '[name].js';
+          }
+          return 'assets/[name]-[hash].js';
+        },
+      },
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        onboarding: resolve(__dirname, 'onboarding.html'),
+        verification: resolve(__dirname, 'verification.html'),
+        background: resolve(__dirname, 'src/background.ts'),
+        contentScript: resolve(__dirname, 'src/contentScript.ts'),
+      },
+    },
   },
-  // Remove the base URL for extension compatibility
-  base: ''
-}); 
+});

@@ -7,6 +7,7 @@ import { getGapResponsiveMappingCss } from './Box.helpers';
 export const StyledBox = styled.div<TStyledBoxProps>`
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   ${space}
   ${color}
   ${layout}

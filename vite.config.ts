@@ -22,11 +22,19 @@ export default defineConfig({
     rollupOptions: {
       output: {
         inlineDynamicImports: false,
+        entryFileNames: (chunkInfo) => {
+          if (chunkInfo.name === 'background' || chunkInfo.name === 'contentScript') {
+            return '[name].js';
+          }
+          return 'assets/[name]-[hash].js';
+        },
       },
       input: {
         main: resolve(__dirname, 'index.html'),
         onboarding: resolve(__dirname, 'onboarding.html'),
         verification: resolve(__dirname, 'verification.html'),
+        background: resolve(__dirname, 'src/background.ts'),
+        contentScript: resolve(__dirname, 'src/contentScript.ts'),
       },
     },
   },

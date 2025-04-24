@@ -11,6 +11,8 @@ const palette: TPalette = {
   orchid800: '#190047',
   orchid900: '#140033',
 
+  diamond: '#D9D9D9',
+
   turquoise100: '#E9FFF9',
   turquoise200: '#C2FFEF',
   turquoise300: '#8DFFE1',

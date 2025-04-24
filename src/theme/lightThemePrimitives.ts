@@ -10,6 +10,8 @@ const lightThemePrimitives: TThemePrimitives = {
   textActive: palette.orchid500,
   textInverted: palette.moon100,
 
+  diamond: palette.diamond,
+
   // Background Primitives
   backgroundPrimary: palette.moon200,
   backgroundSecondary: palette.moon300,

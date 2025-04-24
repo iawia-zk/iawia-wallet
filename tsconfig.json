@@ -21,6 +21,6 @@
       "components/*": ["components/*"]
     }
   },
-  "include": ["src", "public/background.ts", "public/contentScript.ts"],
+  "include": ["src", "src/background.ts", "src/contentScript.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

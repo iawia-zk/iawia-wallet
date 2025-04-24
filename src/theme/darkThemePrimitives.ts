@@ -10,6 +10,8 @@ const darkThemePrimitives: TThemePrimitives = {
   textActive: palette.turquoise500,
   textInverted: palette.moon900,
 
+  diamond: palette.diamond,
+
   // Background Primitives
   backgroundPrimary: palette.moon900,
   backgroundSecondary: palette.moon700,
