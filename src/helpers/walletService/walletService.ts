@@ -1,7 +1,12 @@
 import { ethers, HDNodeWallet, JsonRpcProvider } from 'ethers';
 import storage, { STORAGE_KEYS } from 'helpers/storage';
 import { BURN_ADDRESS, TEST_CHAIN_KEY } from './walletService.constants';
-import { TTransaction, TTransactionDetails } from './walletService.types';
+import {
+  TTransaction,
+  TTransactionDetails,
+  TTokenBalance,
+  TAlchemyTokenMetadata,
+} from './walletService.types';
 
 class WalletService {
   private provider: JsonRpcProvider;
@@ -75,6 +80,80 @@ class WalletService {
   async getTransactionDetails(txHash: string): Promise<TTransactionDetails | null> {
     const tx = await this.provider.getTransaction(txHash);
     return tx;
+  }
+
+  async getTokenBalances(): Promise<TTokenBalance[]> {
+    if (!this.connectedWallet?.address) {
+      return [];
+    }
+
+    try {
+      const response = await fetch(TEST_CHAIN_KEY, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          id: 1,
+          method: 'alchemy_getTokenBalances',
+          params: [this.connectedWallet.address, 'erc20'],
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        console.error('Error fetching token balances:', data.error);
+        return [];
+      }
+
+      const { tokenBalances } = data.result;
+
+      // Get token metadata for each token
+      const tokensWithMetadata = await Promise.all(
+        tokenBalances.map(async (token) => {
+          const metadataResponse = await fetch(TEST_CHAIN_KEY, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              jsonrpc: '2.0',
+              id: 1,
+              method: 'alchemy_getTokenMetadata',
+              params: [token.contractAddress],
+            }),
+          });
+
+          const metadataData = await metadataResponse.json();
+          const metadata: TAlchemyTokenMetadata = metadataData.result;
+
+          return {
+            contractAddress: token.contractAddress,
+            tokenBalance: token.tokenBalance,
+            name: metadata.name,
+            symbol: metadata.symbol,
+            decimals: metadata.decimals,
+            logo: metadata.logo,
+          };
+        })
+      );
+
+      // Get ETH balance
+      const ethBalance = await this.getBalance(this.connectedWallet.address);
+
+      // Add ETH to the list of tokens
+      const ethToken: TTokenBalance = {
+        contractAddress: '0x0000000000000000000000000000000000000000', // Zero address for ETH
+        tokenBalance: ethers.parseEther(ethBalance).toString(),
+        name: 'Ethereum',
+        symbol: 'ETH',
+        decimals: 18,
+        logo: 'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png',
+      };
+
+      return [ethToken, ...tokensWithMetadata];
+    } catch (error) {
+      console.error('Error fetching token balances:', error);
+      return [];
+    }
   }
 }
 

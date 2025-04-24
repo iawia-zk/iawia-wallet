@@ -1,18 +1,9 @@
-import {
-  createContext,
-  ReactElement,
-  useContext,
-  useState,
-  useMemo,
-  useCallback,
-  useEffect,
-} from 'react';
+import { createContext, ReactElement, useContext, useState, useMemo, useCallback } from 'react';
 import { ThemeProvider as StyledComponentProvider } from 'styled-components';
 
-import Theme, { getThemeValueByThemeString } from 'enums/Theme';
+import Theme from 'enums/Theme';
 import { TChildrenOnly } from 'types/common';
-import { lightTheme, darkTheme } from 'theme';
-import { TTheme } from 'theme/theme.types';
+import { darkTheme } from 'theme';
 import storage, { STORAGE_KEYS } from 'helpers/storage';
 
 import { TThemeContext, TThemeState } from './ThemeProvider.types';
@@ -26,10 +17,8 @@ const themeContext = createContext<TThemeContext>({
 
 export const ThemeProvider = ({ children }: TChildrenOnly): ReactElement => {
   const [{ theme }, setState] = useState<TThemeState>(INITIAL_STATE);
-  const [isSystemDark, setIsSystemDark] = useState(
-    window.matchMedia('(prefers-color-scheme: dark)').matches
-  );
 
+  /*
   function getTheme(): TTheme {
     if (theme === Theme.SYSTEM) {
       return isSystemDark ? darkTheme : lightTheme;
@@ -37,27 +26,7 @@ export const ThemeProvider = ({ children }: TChildrenOnly): ReactElement => {
 
     return theme === Theme.LIGHT ? lightTheme : darkTheme;
   }
-
-  useEffect(() => {
-    getSelectedTheme();
-
-    function handleSystemThemeChange(event: MediaQueryListEvent) {
-      setIsSystemDark(event.matches);
-    }
-
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    mediaQuery.addEventListener('change', handleSystemThemeChange);
-
-    return () => {
-      mediaQuery.removeEventListener('change', handleSystemThemeChange);
-    };
-  }, []);
-
-  async function getSelectedTheme() {
-    const theme = await storage.readStorage(STORAGE_KEYS.THEME);
-    const themeValue = getThemeValueByThemeString(theme);
-    setState({ theme: themeValue });
-  }
+    */
 
   const changeTheme = useCallback(
     (theme: Theme) => {
@@ -77,7 +46,7 @@ export const ThemeProvider = ({ children }: TChildrenOnly): ReactElement => {
 
   return (
     <themeContext.Provider value={value}>
-      <StyledComponentProvider theme={getTheme()}>
+      <StyledComponentProvider theme={darkTheme}>
         <>
           <GlobalStyle />
           {children}

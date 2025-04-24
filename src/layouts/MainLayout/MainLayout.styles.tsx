@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  width: calc(100% - 1rem);
+  width: 100%;
   flex-direction: column;
   overflow: hidden;
-  background-color: red;
+  background-color: #1a1a1d;
 `;
 
 export const Navbar = styled.nav`

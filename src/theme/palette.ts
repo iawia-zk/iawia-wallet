@@ -104,6 +104,11 @@ const palette: TPalette = {
   silver: '#CFCFCF',
   transparent: 'transparent',
   trustPilotIcon: '#219653',
+
+  black1: '#000000',
+  black2: '#242526',
+  black3: '#2F3032',
+  black4: '#3E3F40',
 };
 
 export default palette;

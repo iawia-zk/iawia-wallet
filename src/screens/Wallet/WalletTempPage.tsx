@@ -11,6 +11,8 @@ import { TWalletData } from 'types/walletData';
 
 import { useState } from 'react';
 
+const phx = 'wine cheap term venture cute liar shoe floor offer humor spatial lyrics';
+
 const WalletTempPage = () => {
   const { walletState, walletDispatch } = useWalletContext();
   const [phrase, setPhrase] = useState(walletState.wallet?.mnemonic?.phrase);
@@ -52,10 +54,7 @@ const WalletTempPage = () => {
         <CopyInfoItem labelId="label.phrase" value={walletState.wallet?.mnemonic?.phrase ?? '-'} />
         <CopyInfoItem labelId="label.balance" value={walletState.balance ?? '-'} />
         {txData && <CopyInfoItem labelId="label.txData" value={txData} />}
-        <Button
-          onPress={() => walletDispatch.importWallet(phrase ?? '')}
-          labelId="button.importWallet"
-        />
+        <Button onPress={() => walletDispatch.importWallet(phx)} labelId="button.importWallet" />
         <Button
           onPress={() => walletDispatch.sendInitialTransaction('Hello from serhat')}
           labelId="button.sendInitialTransaction"

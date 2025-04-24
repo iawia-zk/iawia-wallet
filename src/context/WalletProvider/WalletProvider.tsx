@@ -29,6 +29,11 @@ function WalletProvider({ children }: TChildrenOnly): ReactElement {
     setState((prevState) => ({ ...prevState, balance }));
   }
 
+  async function getTokens() {
+    const tokens = await walletService.getTokenBalances();
+    setState((prevState) => ({ ...prevState, tokens }));
+  }
+
   function sendInitialTransaction(data: string) {
     walletService?.sendInitialTransaction(data);
   }
@@ -44,7 +49,7 @@ function WalletProvider({ children }: TChildrenOnly): ReactElement {
 
   const value: TWalletContext = {
     walletState: state,
-    walletDispatch: { importWallet, sendInitialTransaction, setWalletData, getBalance },
+    walletDispatch: { importWallet, sendInitialTransaction, setWalletData, getBalance, getTokens },
   };
 
   return <walletContext.Provider value={value}>{children}</walletContext.Provider>;

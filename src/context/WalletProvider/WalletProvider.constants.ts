@@ -4,6 +4,7 @@ import { TWalletDispatch, TWalletState } from './WalletProvider.types';
 export const INITIAL_STATE: TWalletState = {
   wallet: undefined,
   balance: undefined,
+  tokens: undefined,
 };
 
 export const INITIAL_DISPATCH: TWalletDispatch = {
@@ -11,4 +12,5 @@ export const INITIAL_DISPATCH: TWalletDispatch = {
   sendInitialTransaction: NOOP,
   setWalletData: NOOP,
   getBalance: ASYNC_NOOP,
+  getTokens: ASYNC_NOOP,
 };

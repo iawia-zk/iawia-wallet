@@ -13,7 +13,7 @@ const lightThemePrimitives: TThemePrimitives = {
   diamond: palette.diamond,
 
   // Background Primitives
-  backgroundPrimary: palette.moon200,
+  backgroundPrimary: palette.moon700,
   backgroundSecondary: palette.moon300,
   backgroundSecondaryHover: palette.moon400,
   backgroundTertiary: palette.moon100,
@@ -84,6 +84,11 @@ const lightThemePrimitives: TThemePrimitives = {
 
   // White icon
   whiteIcon: palette.moon100,
+
+  black1: palette.black1,
+  black2: palette.black2,
+  black3: palette.black3,
+  black4: palette.black4,
 };
 
 export default lightThemePrimitives;

@@ -32,5 +32,7 @@
   "button.importWallet": "Import Wallet",
   "button.sendInitialTransaction": "Send Initial Transaction",
   "button.getTransactions": "Get Transactions",
-  "label.txData": "Transaction Data"
+  "label.txData": "Transaction Data",
+  "label.tokens": "Tokens",
+  "label.activity": "Activity"
 }

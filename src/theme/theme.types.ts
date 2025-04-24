@@ -100,6 +100,12 @@ export type TThemePrimitives = {
 
   // White icon primitive
   whiteIcon: string;
+
+  // Black Primitives
+  black1: string;
+  black2: string;
+  black3: string;
+  black4: string;
 };
 
 export type TPalette = {
@@ -206,6 +212,10 @@ export type TPalette = {
   trustPilotIcon: string;
 
   diamond: string;
+  black1: string;
+  black2: string;
+  black3: string;
+  black4: string;
 };
 
 export type TTextVariantKeys =
