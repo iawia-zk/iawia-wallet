@@ -5,3 +5,16 @@ export type TDataItem = {
   ipfsHash?: string;
   verified: boolean;
 };
+
+export type TTransactionDataEncrypted = {
+  dateOfBirth: TEncrypted;
+  dateOfExpiry: TEncrypted;
+  documentNumber: TEncrypted;
+  issuingCountry: TEncrypted;
+  nationality: TEncrypted;
+};
+
+export type TEncrypted = {
+  cipher: string;
+  iv: string;
+};

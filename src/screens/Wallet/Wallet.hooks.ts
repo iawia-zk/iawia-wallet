@@ -3,7 +3,6 @@ import { walletService } from 'helpers/walletService';
 import { BURN_ADDRESS } from 'helpers/walletService/walletService.constants';
 import { getRawDataFromHex } from 'helpers/walletService/walletService.helper';
 import { useEffect, useState } from 'react';
-import { TWalletData } from 'types/walletData';
 
 function useWalletTransactions() {
   const { walletState, walletDispatch } = useWalletContext();
@@ -21,9 +20,7 @@ function useWalletTransactions() {
 
     const transactionDetails = await walletService.getTransactionDetails(transaction.hash);
     const stringData = getRawDataFromHex(transactionDetails?.data ?? '');
-    const data: TWalletData = JSON.parse(stringData);
-    setLoading(false);
-    walletDispatch.setWalletData(data);
+    console.log('stringData', stringData);
   }
 
   useEffect(() => {

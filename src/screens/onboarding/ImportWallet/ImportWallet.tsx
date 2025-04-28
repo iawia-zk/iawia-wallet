@@ -9,7 +9,6 @@ import BaseForm from 'components/BaseForm';
 import FieldTextInput from 'components/fields/FieldTextInput';
 import { useTranslation } from 'react-i18next';
 import alertModal from 'helpers/alertModal';
-import { decrypt } from 'helpers/encryption';
 import { walletService } from 'helpers/walletService';
 import storage, { STORAGE_KEYS } from 'helpers/storage';
 import { TImportWalletFormData } from './ImportWallet.types';
@@ -34,13 +33,13 @@ const ImportWallet: FC = () => {
     if (data.walletKey) {
       try {
         // Decryption
-        const decrypted = await decrypt(data.walletKey, import.meta.env.VITE_PHRASE_ENCRYPTION_KEY);
+        // const decrypted = await decrypt(data.walletKey, import.meta.env.VITE_PHRASE_ENCRYPTION_KEY);
 
         // Save to chrome storage
-        const wallet = walletService.importFromPhrase(decrypted);
+        const wallet = walletService.importFromPhrase(data.walletKey);
 
         if (wallet.address) {
-          await storage.writeStorage(STORAGE_KEYS.WALLET_PHRASE, decrypted);
+          await storage.writeStorage(STORAGE_KEYS.WALLET_PHRASE, data.walletKey);
           setIsSuccess(true);
         }
       } catch (error) {

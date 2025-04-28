@@ -3,6 +3,7 @@ import Box from 'components/core/Box';
 import Text from 'components/core/Text';
 import { TTokenBalance } from 'helpers/walletService/walletService.types';
 import { useWalletContext } from 'context/WalletProvider/WalletProvider';
+import { formatBalance } from 'helpers/walletService/walletService.helper';
 
 function TokenList(): ReactElement {
   const { walletState, walletDispatch } = useWalletContext();
@@ -36,7 +37,7 @@ function TokenList(): ReactElement {
                 <img src={token.logo} alt={token.symbol} width={40} height={40} />
               </Box>
             )}
-            <Box>
+            <Box justifyContent="start" alignItems="start">
               <Text variant="textBody">{token.name}</Text>
               <Text variant="textBody" color="textSecondary">
                 {token.symbol}
@@ -44,7 +45,9 @@ function TokenList(): ReactElement {
             </Box>
           </Box>
           <Box alignItems="flex-end">
-            <Text variant="textBody">{Number(token.tokenBalance) / 10 ** token.decimals}</Text>
+            <Text variant="textBody">
+              {formatBalance(`${Number(token.tokenBalance) / 10 ** token.decimals}`)}
+            </Text>
           </Box>
         </Box>
       ))}

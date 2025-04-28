@@ -1,3 +1,5 @@
+import { TEncrypted } from 'screens/Data/Data.types';
+
 async function deriveKey(password: string, salt: string, iterations: number, keyLength: number) {
   const encoder = new TextEncoder();
 
@@ -42,10 +44,16 @@ function base64ToBytes(base64: string): Uint8Array {
   return bytes;
 }
 
-export async function decrypt(base64Data: string, keyIdentifier: string) {
+export async function decrypt(base64Data: string | TEncrypted, keyIdentifier: string) {
   try {
     // Parse the JSON string containing cipher and iv
-    const encryptedData = JSON.parse(base64Data);
+    let encryptedData;
+
+    if (base64Data && typeof base64Data === 'string') {
+      encryptedData = JSON.parse(base64Data);
+    } else {
+      encryptedData = base64Data;
+    }
 
     if (!encryptedData.cipher || !encryptedData.iv) {
       throw new Error('Invalid encrypted data format: missing cipher or iv');

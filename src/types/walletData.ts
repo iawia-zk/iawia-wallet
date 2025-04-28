@@ -1,10 +1,7 @@
-import { ZKType } from 'enums/ZKType';
-
-export type TWalletData = {
-  snarks: TSnark[];
-};
-
-export type TSnark = {
-  type: ZKType;
-  ipfsHash: string;
+export type TTransactionData = {
+  dateOfBirth: string;
+  dateOfExpiry: string;
+  documentNumber: string;
+  issuingCountry: string;
+  nationality: string;
 };

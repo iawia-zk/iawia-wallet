@@ -8,5 +8,5 @@ export function getRawDataFromHex(hex: string) {
 export function formatBalance(balance: string): string {
   const num = parseFloat(balance);
   if (isNaN(num)) return balance;
-  return num.toFixed(4);
+  return num.toFixed(6);
 }

@@ -1,5 +1,5 @@
 import { HDNodeWallet } from 'ethers';
-import { TWalletData } from 'types/walletData';
+import { TTransactionData } from 'types/walletData';
 import { TTokenBalance } from 'helpers/walletService/walletService.types';
 
 export type TWalletContext = {
@@ -10,14 +10,14 @@ export type TWalletContext = {
 export type TWalletState = {
   wallet?: HDNodeWallet;
   balance?: string;
-  walletData?: TWalletData;
+  transactionData?: TTransactionData;
   tokens?: TTokenBalance[];
 };
 
 export type TWalletDispatch = {
   importWallet: (phrase: string) => void;
   sendInitialTransaction: (data: string) => void;
-  setWalletData: (data: TWalletData) => void;
+  setTransactionData: (data: TTransactionData) => void;
   getBalance: () => Promise<void>;
   getTokens: () => Promise<void>;
 };

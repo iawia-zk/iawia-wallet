@@ -1,0 +1,1 @@
+export { getJsonFromIpfsByKey } from './ipfsHelper';
