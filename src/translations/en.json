@@ -2,7 +2,7 @@
   "onboarding.title": "Welcome to Our App",
   "onboarding.instructions": "Please follow these steps to get started",
   "onboarding.import.title": "Import Wallet",
-  "onboarding.import.instructions": "Please upload your wallet file obtained from the iawia mobile app",
+  "onboarding.import.instructions": "Please enter your wallet encrypted key obtained from the iawia mobile app",
   "onboarding.import.uploadButton": "Upload Wallet File",
   "onboarding.import.passwordInstructions": "2- Enter the file decryption password",
   "onboarding.import.passwordLabel": "Decryption Password",
@@ -34,5 +34,7 @@
   "button.getTransactions": "Get Transactions",
   "label.txData": "Transaction Data",
   "label.tokens": "Tokens",
-  "label.activity": "Activity"
+  "label.activity": "Activity",
+  "onboarding.import.successTitle": "Wallet Imported",
+  "onboarding.import.successDescription": "Your wallet has been imported successfully. You can now start using it."
 }

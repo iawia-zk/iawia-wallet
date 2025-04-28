@@ -1,4 +1,5 @@
 import { ethers } from 'ethers';
+import { isNaN } from 'lodash';
 
 export function getRawDataFromHex(hex: string) {
   return ethers.toUtf8String(hex);

@@ -36,7 +36,7 @@ function CopyInfoItem({
     <Box marginBottom={marginBottom} width="100%">
       <StyledCopyInfoItemButton type="button" onClick={handleCopy}>
         <Box flexDirection="row" alignItems="center" minHeight={COPY_ITEM_MIN_HEIGHT}>
-          <Box flex={1}>
+          <Box flex={1} alignItems="flex-start">
             <Text textId={labelId} variant="textBodySub" color="textSecondary" {...labelProps} />
             <Text
               variant="textBodySubBold"

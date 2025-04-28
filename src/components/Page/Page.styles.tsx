@@ -8,11 +8,11 @@ export const PageContainer = styled(Box)`
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   justify-content: center;
   align-items: center;
-  flex-direction: row;
 
   #wrapper {
     display: flex;
     box-sizing: border-box;
+    width: 100%;
     flex: 1;
     max-width: 600px;
     height: calc(100vh - ${HEADER_HEIGHT});

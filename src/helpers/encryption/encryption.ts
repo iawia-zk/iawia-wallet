@@ -1,74 +1,86 @@
-async function getKey(decrypter: string): Promise<CryptoKey> {
+async function deriveKey(password: string, salt: string, iterations: number, keyLength: number) {
   const encoder = new TextEncoder();
-  const keyMaterial = await crypto.subtle.importKey(
+
+  const keyMaterial = await window.crypto.subtle.importKey(
     'raw',
-    encoder.encode(decrypter),
-    { name: 'PBKDF2' },
+    encoder.encode(password),
+    'PBKDF2',
     false,
-    ['deriveBits', 'deriveKey']
+    ['deriveKey']
   );
 
-  return crypto.subtle.deriveKey(
+  const key = await window.crypto.subtle.deriveKey(
     {
       name: 'PBKDF2',
-      salt: encoder.encode('salt'),
-      iterations: 100000,
+      salt: encoder.encode(salt),
+      iterations,
       hash: 'SHA-256',
     },
     keyMaterial,
-    { name: 'AES-GCM', length: 256 },
+    { name: 'AES-CBC', length: keyLength },
     false,
-    ['encrypt', 'decrypt']
+    ['decrypt']
   );
+
+  return key;
 }
 
-export async function encrypt(text: string, decrypter: string): Promise<string> {
-  const encoder = new TextEncoder();
-  const key = await getKey(decrypter);
-
-  // Generate random IV
-  const iv = crypto.getRandomValues(new Uint8Array(12));
-
-  const encryptedContent = await crypto.subtle.encrypt(
-    {
-      name: 'AES-GCM',
-      iv,
-    },
-    key,
-    encoder.encode(text)
-  );
-
-  // Combine IV and encrypted content
-  const encryptedArray = new Uint8Array(iv.length + new Uint8Array(encryptedContent).length);
-  encryptedArray.set(iv);
-  encryptedArray.set(new Uint8Array(encryptedContent), iv.length);
-
-  // Convert to base64 for storage/transmission
-  return btoa(String.fromCharCode(...encryptedArray));
+function hexToBytes(hex: string): Uint8Array {
+  const bytes = [];
+  for (let i = 0; i < hex.length; i += 2) {
+    bytes.push(parseInt(hex.substr(i, 2), 16));
+  }
+  return new Uint8Array(bytes);
 }
 
-export async function decrypt(text: string, decrypter: string): Promise<string> {
-  const decoder = new TextDecoder();
-  const key = await getKey(decrypter);
+function base64ToBytes(base64: string): Uint8Array {
+  const binaryString = atob(base64);
+  const bytes = new Uint8Array(binaryString.length);
+  for (let i = 0; i < binaryString.length; i++) {
+    bytes[i] = binaryString.charCodeAt(i);
+  }
+  return bytes;
+}
 
-  // Convert from base64 and extract IV
-  const encryptedArray = new Uint8Array(
-    atob(text)
-      .split('')
-      .map((char) => char.charCodeAt(0))
-  );
+export async function decrypt(base64Data: string, keyIdentifier: string) {
+  try {
+    // Parse the JSON string containing cipher and iv
+    const encryptedData = JSON.parse(base64Data);
 
-  const iv = encryptedArray.slice(0, 12);
-  const encryptedContent = encryptedArray.slice(12);
+    if (!encryptedData.cipher || !encryptedData.iv) {
+      throw new Error('Invalid encrypted data format: missing cipher or iv');
+    }
 
-  const decryptedContent = await crypto.subtle.decrypt(
-    {
-      name: 'AES-GCM',
-      iv,
-    },
-    key,
-    encryptedContent
-  );
+    // IV is hex encoded, cipher is base64 encoded
+    const iv = hexToBytes(encryptedData.iv);
+    const cipherText = base64ToBytes(encryptedData.cipher);
 
-  return decoder.decode(decryptedContent);
+    let key: CryptoKey;
+    try {
+      key = await deriveKey(keyIdentifier, 'salt', 5000, 256);
+      console.log('Key derived successfully');
+    } catch (e) {
+      console.error('Key derivation failed:', e);
+      throw e;
+    }
+
+    try {
+      const decrypted = await window.crypto.subtle.decrypt(
+        {
+          name: 'AES-CBC',
+          iv,
+        },
+        key,
+        cipherText
+      );
+      console.log('Decryption successful');
+      return new TextDecoder().decode(decrypted);
+    } catch (e) {
+      console.error('Decryption failed:', e);
+      throw e;
+    }
+  } catch (e) {
+    console.error('Overall decryption process failed:', e);
+    throw e;
+  }
 }

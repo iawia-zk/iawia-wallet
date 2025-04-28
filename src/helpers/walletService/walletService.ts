@@ -110,6 +110,7 @@ class WalletService {
 
       // Get token metadata for each token
       const tokensWithMetadata = await Promise.all(
+        // @ts-ignore
         tokenBalances.map(async (token) => {
           const metadataResponse = await fetch(TEST_CHAIN_KEY, {
             method: 'POST',
