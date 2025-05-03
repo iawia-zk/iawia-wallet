@@ -3,7 +3,10 @@ import Page from 'components/Page';
 import Box from 'components/core/Box';
 import Text from 'components/core/Text';
 import Button from 'components/core/Button';
-import { ZKType } from 'enums/ZKType';
+import { getTitleIdByZkType, ZKType } from 'enums/ZKType';
+import Card from 'components/Card';
+import ListItem from 'components/ListItem';
+import { CheckCircleIcon } from 'components/core/Icon';
 
 interface CompanyData {
   companyName: string;
@@ -42,31 +45,32 @@ function Verification() {
   }
 
   return (
-    <Page>
+    <Page header>
       <Box padding="xl" gap="xl">
-        <Box alignItems="center" gap="m">
-          <img
-            src={companyData.companyLogo}
-            alt={companyData.companyName}
-            style={{
-              maxWidth: '400px',
-              height: '100px',
-              objectFit: 'contain',
-              objectPosition: 'center',
-            }}
-          />
-          <Text variant="textBody">{companyData.companyName}</Text>
-        </Box>
+        {/* <Card alignItems="start" gap="m" p="m"> */}
+        <img
+          src={companyData.companyLogo}
+          alt={companyData.companyName}
+          style={{
+            maxWidth: '180px',
+            objectFit: 'contain',
+            objectPosition: 'center',
+          }}
+        />
+        <Text variant="textBodyBold">
+          {companyData.companyName} wants you to verify some informations below:
+        </Text>
+        {/* </Card> */}
 
         <Box gap="m">
           <Text variant="textBody">Requested Verifications</Text>
-          <Box backgroundColor="backgroundSecondary" padding="m" borderRadius="8px" gap="s">
-            {companyData.zkTypes.map((zkType, index) => (
-              <Box key={index} padding="s">
-                <Text>{zkType}</Text>
-              </Box>
-            ))}
-          </Box>
+          {/* <Box backgroundColor="backgroundSecondary" padding="m" borderRadius="8px" gap="s"> */}
+          {companyData.zkTypes.map((zkType, index) => (
+            <Card key={index}>
+              <ListItem leftIcon={CheckCircleIcon} labelId={getTitleIdByZkType(zkType)} />
+            </Card>
+          ))}
+          {/* </Box> */}
         </Box>
 
         <Box marginTop="auto">

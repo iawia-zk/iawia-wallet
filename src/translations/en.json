@@ -36,5 +36,14 @@
   "label.tokens": "Tokens",
   "label.activity": "Activity",
   "onboarding.import.successTitle": "Wallet Imported",
-  "onboarding.import.successDescription": "Your wallet has been imported successfully. You can now start using it."
+  "onboarding.import.successDescription": "Your wallet has been imported successfully. You can now start using it.",
+  "label.nationalityIsTur": "Nationality is Turkish",
+  "label.nationalityIsNotTur": "Nationality is not Turkish",
+  "label.ageIsOver18": "Age is over 18",
+  "label.ageIsOver24": "Age is over 24",
+  "label.ageIsUnder18": "Age is under 18",
+  "label.genderIsMan": "Gender is male",
+  "label.genderIsWoman": "Gender is female",
+  "label.passportIdIsValid": "Passport ID is valid",
+  "label.nationalityIdIsValid": "Nationality ID is valid"
 }

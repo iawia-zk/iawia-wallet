@@ -44,7 +44,6 @@ const ImportWallet: FC = () => {
           setIsSuccess(true);
         }
       } catch (error) {
-        console.error('error', error);
         alertModal.error({
           titleId: 'errors.decryption',
         });

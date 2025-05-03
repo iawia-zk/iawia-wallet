@@ -7,9 +7,9 @@ import WalletProvider from 'context/WalletProvider';
 import MainLayout from './layouts/MainLayout';
 import Data from './screens/Data/Data';
 import Wallet from './screens/Wallet';
-import Onboard from './screens/onboarding/Onboard/Onboard';
-import ImportWallet from './screens/onboarding/ImportWallet/ImportWallet';
-import CreateWallet from './screens/onboarding/CreateWallet/CreateWallet';
+import Onboard from './screens/Onboarding/Onboard/Onboard';
+import ImportWallet from './screens/Onboarding/ImportWallet/ImportWallet';
+import CreateWallet from './screens/Onboarding/CreateWallet/CreateWallet';
 import './configs/i18n';
 
 declare global {

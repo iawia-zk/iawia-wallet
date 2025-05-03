@@ -3,7 +3,7 @@ import './onboarding.css';
 import './assets/global.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import ImportWallet from 'screens/onboarding/ImportWallet';
+import ImportWallet from 'screens/Onboarding/ImportWallet';
 import AlertModal from 'components/AlertModal';
 import { alertModalRef } from 'components/AlertModal/AlertModal';
 import './configs/i18n';
