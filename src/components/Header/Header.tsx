@@ -11,15 +11,19 @@ export const Header = ({ titleId = 'header.defaultTitle', back }: THeaderProps) 
   const { t } = useTranslation();
 
   return (
-    <HeaderContainer flexDirection="row" justifyContent="center">
-      <Logo src={IMAGES.logo} alt="iawia logo" />
-      <Box width="3rem">{back && <HeaderBackButton />}</Box>
-      <Box flex={1} justifyContent="center" alignItems="center">
+    <HeaderContainer justifyContent="center">
+      {back && (
+        <Box width="3rem">
+          <HeaderBackButton />
+        </Box>
+      )}
+      <Box flex={1} justifyContent="center" alignItems="center" flexDirection="row" gap="s">
+        <Logo src={IMAGES.logo} alt="iawia logo" />
         <Text variant="titleSection" color="textPrimary">
           {t(titleId)}
         </Text>
       </Box>
-      <Box width="3rem" />
+      {back && <Box width="3rem" />}
     </HeaderContainer>
   );
 };
