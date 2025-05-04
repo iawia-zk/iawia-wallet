@@ -15,11 +15,13 @@ interface IawiaConnectEvent {
   circuits?: string[];
 }
 
+chrome.runtime.sendMessage({ action: 'RUNTIME_IAWIA_REGISTER_SDK_TAB' });
+
 window.addEventListener('IAWIA_CONNECT', ((event: CustomEvent<IawiaConnectEvent>) => {
   const { companyName, companyLogo, zkTypes, circuits } = event.detail;
 
   chrome.runtime.sendMessage({
-    action: 'OPEN_FULLSCREEN_PAGE',
+    action: 'RUNTIME_IAWIA_OPEN_FULLSCREEN_PAGE',
     data: {
       companyName,
       companyLogo,
@@ -28,3 +30,13 @@ window.addEventListener('IAWIA_CONNECT', ((event: CustomEvent<IawiaConnectEvent>
     },
   });
 }) as EventListener);
+
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.action === 'RUNTIME_IAWIA_FROM_WALLET_TO_SDK') {
+    const event = new CustomEvent('IAWIA_WALLET_MESSAGE', {
+      detail: message.payload,
+    });
+
+    window.dispatchEvent(event);
+  }
+});

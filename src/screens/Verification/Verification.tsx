@@ -44,13 +44,18 @@ function Verification() {
       issuingCountry: 'TUR',
       nationality: 'TUR',
     };
-    console.log('Verifying:', companyData, mockPassportData);
 
     const response = await sendVerificationRequest({
       passportData: mockPassportData,
       runnables: companyData?.circuits || [],
     });
-    console.log('Response:', response);
+
+    chrome.runtime.sendMessage({
+      action: 'RUNTIME_IAWIA_SEND__VERIFICATION_RESPONSE_TO_SDK',
+      payload: {
+        response,
+      },
+    });
   };
 
   if (!companyData) {
