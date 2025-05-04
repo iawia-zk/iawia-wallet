@@ -12,6 +12,7 @@ interface CompanyData {
   companyName: string;
   companyLogo: string;
   zkTypes: ZKType[];
+  circuits?: string[];
 }
 
 function Verification() {
@@ -26,11 +27,13 @@ function Verification() {
     const data = urlParams.get('data');
     if (data) {
       setCompanyData(JSON.parse(data));
+      console.log('Company Data:', JSON.parse(data));
     }
   }, []);
 
   const handleVerify = () => {
-    // Implement handshake here
+    // TODO1: Base 64 code can be retrieved in an encrypted way
+    // TODO2: Send the verification request to the server
     console.log('Verifying:', companyData);
   };
 
@@ -60,8 +63,7 @@ function Verification() {
         <Text variant="textBodyBold">
           {companyData.companyName} wants you to verify some informations below:
         </Text>
-        {/* </Card> */}
-
+        {companyData.circuits && <div>{companyData.circuits}</div>}
         <Box gap="m">
           <Text variant="textBody">Requested Verifications</Text>
           {/* <Box backgroundColor="backgroundSecondary" padding="m" borderRadius="8px" gap="s"> */}

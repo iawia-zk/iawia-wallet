@@ -12,10 +12,11 @@ interface IawiaConnectEvent {
     | 'PASSPORT_ID_IS_VALID'
     | 'NATIONALITY_ID_IS_VALID'
   >;
+  circuits?: string[];
 }
 
 window.addEventListener('IAWIA_CONNECT', ((event: CustomEvent<IawiaConnectEvent>) => {
-  const { companyName, companyLogo, zkTypes } = event.detail;
+  const { companyName, companyLogo, zkTypes, circuits } = event.detail;
 
   chrome.runtime.sendMessage({
     action: 'OPEN_FULLSCREEN_PAGE',
@@ -23,6 +24,7 @@ window.addEventListener('IAWIA_CONNECT', ((event: CustomEvent<IawiaConnectEvent>
       companyName,
       companyLogo,
       zkTypes,
+      circuits,
     },
   });
 }) as EventListener);
