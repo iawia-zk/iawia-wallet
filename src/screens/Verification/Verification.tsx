@@ -50,10 +50,16 @@ function Verification() {
       runnables: companyData?.circuits || [],
     });
 
+    if (!response.result) {
+      console.error('Verification failed', response.error);
+      return;
+    }
+
     chrome.runtime.sendMessage({
-      action: 'RUNTIME_IAWIA_SEND__VERIFICATION_RESPONSE_TO_SDK',
+      action: 'RUNTIME_IAWIA_SEND_VERIFICATION_RESPONSE_TO_SDK',
       payload: {
-        response,
+        action: 'VERIFICATION_RESPONSE',
+        payload: response.result,
       },
     });
   };

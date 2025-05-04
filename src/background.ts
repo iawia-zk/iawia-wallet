@@ -30,7 +30,7 @@ chrome.runtime.onMessage.addListener(async (msg, sender) => {
     }
   }
 
-  if (msg.action === 'RUNTIME_IAWIA_SEND__VERIFICATION_RESPONSE_TO_SDK') {
+  if (msg.action === 'RUNTIME_IAWIA_SEND_VERIFICATION_RESPONSE_TO_SDK') {
     chrome.storage.local.get('sdkTabId', ({ sdkTabId }) => {
       if (!sdkTabId) return;
 
