@@ -7,6 +7,8 @@ import { getTitleIdByZkType, ZKType } from 'enums/ZKType';
 import Card from 'components/Card';
 import ListItem from 'components/ListItem';
 import { CheckCircleIcon } from 'components/core/Icon';
+import { TTransactionData } from 'types/walletData';
+import { sendVerificationRequest } from 'api/api';
 
 interface CompanyData {
   companyName: string;
@@ -31,10 +33,24 @@ function Verification() {
     }
   }, []);
 
-  const handleVerify = () => {
+  const handleVerify = async () => {
     // TODO1: Base 64 code can be retrieved in an encrypted way
     // TODO2: Send the verification request to the server
-    console.log('Verifying:', companyData);
+
+    const mockPassportData: TTransactionData = {
+      dateOfBirth: '1990-01-01',
+      dateOfExpiry: '2025-01-01',
+      documentNumber: '1234567890',
+      issuingCountry: 'TUR',
+      nationality: 'TUR',
+    };
+    console.log('Verifying:', companyData, mockPassportData);
+
+    const response = await sendVerificationRequest({
+      passportData: mockPassportData,
+      runnables: companyData?.circuits || [],
+    });
+    console.log('Response:', response);
   };
 
   if (!companyData) {
