@@ -6,6 +6,7 @@ import { getRawDataFromHex } from 'helpers/walletService/walletService.helper';
 import { getJsonFromIpfsByKey } from 'helpers/ipfsHelper';
 import { decrypt } from 'helpers/encryption';
 import { TTransactionData } from 'types/walletData';
+import storage, { STORAGE_KEYS } from 'helpers/storage';
 import Page from '../../components/Page';
 import { TTransactionDataEncrypted } from './Data.types';
 
@@ -24,6 +25,11 @@ const Data: FC = () => {
     const transactionDetails = await walletService.getTransactionDetails(transaction.hash);
     const ipfsHash = getRawDataFromHex(transactionDetails?.data ?? '');
     const jsonDataEncrypted: TTransactionDataEncrypted = await getJsonFromIpfsByKey(ipfsHash);
+
+    await storage.writeStorage(
+      STORAGE_KEYS.ENCRYPTED_PASSPORT_DATA,
+      JSON.stringify(jsonDataEncrypted)
+    );
 
     const jsonData: TTransactionData = {
       dateOfBirth: '',

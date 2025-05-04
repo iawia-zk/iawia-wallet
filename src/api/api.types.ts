@@ -1,6 +1,6 @@
-import { TTransactionData } from 'types/walletData';
+import { TTransactionDataEncrypted } from 'screens/Data/Data.types';
 
 export type TSendVerificationRequestBody = {
   runnables: string[];
-  passportData: TTransactionData;
+  passportData: TTransactionDataEncrypted;
 };

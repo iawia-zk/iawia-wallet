@@ -7,8 +7,9 @@ import { getTitleIdByZkType, ZKType } from 'enums/ZKType';
 import Card from 'components/Card';
 import ListItem from 'components/ListItem';
 import { CheckCircleIcon } from 'components/core/Icon';
-import { TTransactionData } from 'types/walletData';
 import { sendVerificationRequest } from 'api/api';
+import storage, { STORAGE_KEYS } from 'helpers/storage';
+import { TTransactionDataEncrypted } from 'screens/Data/Data.types';
 
 interface CompanyData {
   companyName: string;
@@ -34,19 +35,17 @@ function Verification() {
   }, []);
 
   const handleVerify = async () => {
-    // TODO1: Base 64 code can be retrieved in an encrypted way
-    // TODO2: Send the verification request to the server
+    // Get data from storage
+    const storedData = await storage.readStorage(STORAGE_KEYS.ENCRYPTED_PASSPORT_DATA);
+    if (!storedData) {
+      console.error('No passport data found in storage');
+      return;
+    }
 
-    const mockPassportData: TTransactionData = {
-      dateOfBirth: '1990-01-01',
-      dateOfExpiry: '2025-01-01',
-      documentNumber: '1234567890',
-      issuingCountry: 'TUR',
-      nationality: 'TUR',
-    };
+    const passportData: TTransactionDataEncrypted = JSON.parse(storedData);
 
     const response = await sendVerificationRequest({
-      passportData: mockPassportData,
+      passportData,
       runnables: companyData?.circuits || [],
     });
 
@@ -62,6 +61,8 @@ function Verification() {
         payload: response.result,
       },
     });
+
+    // window.close();
   };
 
   if (!companyData) {
@@ -90,7 +91,6 @@ function Verification() {
         <Text variant="textBodyBold">
           {companyData.companyName} wants you to verify some informations below:
         </Text>
-        {companyData.circuits && <div>{companyData.circuits}</div>}
         <Box gap="m">
           <Text variant="textBody">Requested Verifications</Text>
           {/* <Box backgroundColor="backgroundSecondary" padding="m" borderRadius="8px" gap="s"> */}
